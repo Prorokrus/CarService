@@ -1,0 +1,56 @@
+﻿@using CommonLayer.ViewModels
+@model List<UserViewModel>
+
+@{
+ViewData["Title"] = "Users";
+}
+
+<div class="container">
+    <h2>Users</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>@nameof(UserViewModel.Name)</th>
+            <th>@nameof(UserViewModel.UserName)</th>
+            <th>@nameof(UserViewModel.Email)</th>
+            <th>@nameof(UserViewModel.Address)</th>
+            <th>@nameof(UserViewModel.Phone)</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || Model.Count < 1)
+            {
+                <tr>
+                    <td colspan="3">No data</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Address</td>
+                        <td>@user.Phone</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const menuItems = document.getElementById('header-menu').children;
+            for (const item in menuItems) {
+                console.log(menuItems[item]);
+                if (menuItems[item].children != undefined)
+                    menuItems[item].classList.remove('active');
+            }
+            document.getElementById('nav-item-users').classList.add('active');
+        });
+    </script>
+}
