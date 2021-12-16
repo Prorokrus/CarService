@@ -37,7 +37,8 @@ namespace FrontOffice.MVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

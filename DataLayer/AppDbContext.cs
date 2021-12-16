@@ -10,6 +10,8 @@ namespace DataLayer
         public DbSet<Vehicle> Vehicles;
         public DbSet<Detail> Details;
         public DbSet<ServiceType> ServiceTypes;
+        public DbSet<Role> Roles;
+        public DbSet<UserRole> UserRoles;
 
         public AppDbContext(DbContextOptions settings)
             : base(settings)
@@ -50,7 +52,18 @@ namespace DataLayer
                 entity.Property(x => x.Price).HasPrecision(7, 2);
                 entity.Property(x => x.Duration).HasPrecision(7, 2);
             });
-        }
 
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+                entity.HasOne(x => x.User);
+                entity.HasOne(x => x.Role);
+            });
+        }
     }
 }

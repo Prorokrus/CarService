@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Helpers;
 using CommonLayer.ViewModels;
+using DataLayer.Entities;
 using Microsoft.Extensions.Logging;
 using ServiceLayer.Interfaces;
 
@@ -30,7 +31,23 @@ namespace ServiceLayer.Services
             {
                 _logger.LogError(exception, exception.Message);
             }
+
             return new List<UserViewModel>();
+        }
+
+        public async Task<User> GetByUserName(string username)
+        {
+            _logger.LogInformation($"Getting user with username: {username}");
+            try
+            {
+                return await _userHelper.GetByUserName(username);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+
+            return new User();
         }
     }
 }

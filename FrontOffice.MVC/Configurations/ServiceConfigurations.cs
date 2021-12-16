@@ -8,6 +8,8 @@ using CommonLayer;
 using DataLayer;
 using DataLayer.Repositories;
 using DataLayer.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,12 +47,20 @@ namespace FrontOffice.MVC.Configurations
 
             #endregion
 
+            #region Auth
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+
+            #endregion
+
             #region Helpers
 
             services.AddScoped<BaseCategoryHelper>();
             services.AddScoped<CategoryHelper>();
             services.AddScoped<ProductHelper>();
             services.AddScoped<UserHelper>();
+            services.AddScoped<UserRoleHelper>();
 
             #endregion
 
@@ -60,6 +70,7 @@ namespace FrontOffice.MVC.Configurations
             services.AddScoped<IFetchDataService, FetchDataService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRoleService, UserRoleService>();
 
             #endregion
 
