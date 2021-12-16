@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace FrontOffice.MVC.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

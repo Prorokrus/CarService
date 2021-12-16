@@ -9,5 +9,6 @@ namespace ServiceLayer.Interfaces
     {
         Task<List<UserViewModel>> GetAllUsers();
         Task<User> GetByUserName(string username);
+        Task<UserViewModel> GetByUserName(string username, bool returnModel);
     }
 }

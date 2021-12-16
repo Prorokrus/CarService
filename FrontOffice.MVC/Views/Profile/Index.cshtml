@@ -1,0 +1,33 @@
+﻿@model CommonLayer.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container">
+    <div class="row">
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <label class="profile-item">Name: </label>
+                @Html.DisplayFor(x => x.Name)
+            </li>
+            <li class="list-group-item">
+                <label class="profile-item">UserName: </label>
+                @Html.DisplayFor(x => x.UserName)
+            </li>
+            <li class="list-group-item">
+                <label class="profile-item">Email: </label>
+                @Html.DisplayFor(x => x.Email)
+            </li>
+            <li class="list-group-item">
+                <label class="profile-item">Address: </label>
+                @Html.DisplayFor(x => x.Address)
+            </li>
+            <li class="list-group-item">
+                <label class="profile-item">Phone: </label>
+                @Html.DisplayFor(x => x.Phone)
+            </li>
+        </ul>
+    </div>
+</div>

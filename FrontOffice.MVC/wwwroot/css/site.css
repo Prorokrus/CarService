@@ -73,3 +73,9 @@ body {
 .nav-item.active {
     border-bottom: 2px solid #dc3545;
 }
+
+/* Profile page */
+
+.profile-item {
+    font-weight: bold;
+}

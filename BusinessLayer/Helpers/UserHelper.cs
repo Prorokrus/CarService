@@ -27,5 +27,11 @@ namespace BusinessLayer.Helpers
         {
             return await _userRepository.Get(x => x.UserName == username);
         }
+
+        public async Task<UserViewModel> GetByUserName(string username, bool returnModel)
+        {
+            var user = await _userRepository.Get(x => x.UserName == username);
+            return user.ToViewModel();
+        }
     }
 }

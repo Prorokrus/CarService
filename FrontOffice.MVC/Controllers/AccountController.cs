@@ -18,8 +18,6 @@ namespace FrontOffice.MVC.Controllers
         {
             _userService = userService;
             _userRoleService = userRoleService;
-            _orderService = orderService;
-            _vehicleService = vehicleService;
         }
 
         public IActionResult Index()
@@ -69,7 +67,8 @@ namespace FrontOffice.MVC.Controllers
                 identity = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Role, role)
+                    new Claim(ClaimTypes.Role, role),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
                 isAuthenticate = true;
             }

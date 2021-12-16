@@ -19,5 +19,18 @@ namespace BusinessLayer.Mapper
                 UserName = x.UserName
             }).ToList();
         }
+
+        public static UserViewModel ToViewModel(this User user)
+        {
+            return new UserViewModel
+            {
+                Id = user.Id,
+                Address = user.Address,
+                Email = user.Email,
+                Name = user.Name,
+                Phone = user.Phone,
+                UserName = user.UserName
+            };
+        }
     }
 }
