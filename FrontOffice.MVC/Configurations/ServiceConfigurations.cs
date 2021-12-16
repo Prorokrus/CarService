@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using BusinessLayer.Helpers;
+﻿using BusinessLayer.Helpers;
 using CommonLayer;
 using DataLayer;
 using DataLayer.Repositories;
@@ -15,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceLayer.Interfaces;
 using ServiceLayer.Services;
+using System.Net.Http;
 
 namespace FrontOffice.MVC.Configurations
 {
@@ -31,6 +27,8 @@ namespace FrontOffice.MVC.Configurations
                 }));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IVehicleRepository), typeof(VehicleRepository));
+            services.AddScoped(typeof(IUserRoleRepository), typeof(UserRoleRepository));
 
             #endregion
 
@@ -56,21 +54,19 @@ namespace FrontOffice.MVC.Configurations
 
             #region Helpers
 
-            services.AddScoped<BaseCategoryHelper>();
-            services.AddScoped<CategoryHelper>();
-            services.AddScoped<ProductHelper>();
             services.AddScoped<UserHelper>();
             services.AddScoped<UserRoleHelper>();
+            services.AddScoped<OrderHelper>();
+            services.AddScoped<VehicleHelper>();
 
             #endregion
 
             #region Application Services
 
-            services.AddScoped<IFetchDataHttpClient, FetchDataHttpClient>();
-            services.AddScoped<IFetchDataService, FetchDataService>();
-            services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRoleService, UserRoleService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IVehicleService, VehicleService>();
 
             #endregion
 

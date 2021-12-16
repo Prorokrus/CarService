@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Helpers;
 using CommonLayer.ViewModels;
+using DataLayer.Entities;
 using Microsoft.Extensions.Logging;
 using ServiceLayer.Interfaces;
 
@@ -31,6 +32,20 @@ namespace ServiceLayer.Services
                 _logger.LogError(exception, exception.Message);
             }
             return new List<VehicleViewModel>();
+        }
+
+        public async Task<List<Vehicle>> GetAllVehicles(User user)
+        {
+            _logger.LogInformation("Getting all users");
+            try
+            {
+                return await _vehicleHelper.GetAll(user);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+            return new List<Vehicle>();
         }
     }
 }

@@ -6,17 +6,16 @@ namespace BusinessLayer.Helpers
 {
     public class UserRoleHelper
     {
-        private readonly IGenericRepository<UserRole> _userRoleRepository;
+        private readonly IUserRoleRepository _userRoleRepository;
 
-        public UserRoleHelper(IGenericRepository<UserRole> userRoleRepository)
+        public UserRoleHelper(IUserRoleRepository userRoleRepository)
         {
             _userRoleRepository = userRoleRepository;
         }
 
         public async Task<UserRole> GetUserRole(User user)
         {
-            var userRole = await _userRoleRepository.Get(x => x.User == user);
-            return userRole;
+            return await _userRoleRepository.GetUserRole(user);
         }
     }
 }

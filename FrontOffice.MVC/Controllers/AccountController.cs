@@ -1,12 +1,11 @@
-﻿using System;
-using System.Security.Claims;
-using BusinessLayer.Helpers;
+﻿using BusinessLayer.Helpers;
 using CommonLayer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using ServiceLayer.Interfaces;
+using System;
+using System.Security.Claims;
 
 namespace FrontOffice.MVC.Controllers
 {
@@ -15,10 +14,12 @@ namespace FrontOffice.MVC.Controllers
         private readonly IUserService _userService;
         private readonly IUserRoleService _userRoleService;
 
-        public AccountController(IUserService userService, IUserRoleService userRoleService)
+        public AccountController(IUserService userService, IUserRoleService userRoleService, IOrderService orderService, IVehicleService vehicleService)
         {
             _userService = userService;
             _userRoleService = userRoleService;
+            _orderService = orderService;
+            _vehicleService = vehicleService;
         }
 
         public IActionResult Index()
