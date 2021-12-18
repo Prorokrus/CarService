@@ -1,4 +1,5 @@
-﻿using CommonLayer.ViewModels;
+﻿using System.Threading.Tasks;
+using CommonLayer.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Interfaces;
@@ -26,12 +27,12 @@ namespace FrontOffice.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(UserViewModel model)
+        public async Task<IActionResult> Update(UserViewModel model)
         {
             if (!ModelState.IsValid)
                 return View("Index");
 
-            //todo: update user
+            await _userService.Update(model);
 
             return RedirectToAction("Index");
         }

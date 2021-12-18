@@ -11,5 +11,6 @@ namespace ServiceLayer.Interfaces
         Task<User> GetByUserName(string username);
         Task<int> GetUserIdByUserName(string username);
         Task<UserViewModel> GetByUserName(string username, bool returnModel);
+        Task Update(UserViewModel model);
     }
 }

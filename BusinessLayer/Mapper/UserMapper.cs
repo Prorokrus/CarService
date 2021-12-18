@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommonLayer.ViewModels;
 using DataLayer.Entities;
@@ -30,6 +31,20 @@ namespace BusinessLayer.Mapper
                 Name = user.Name,
                 Phone = user.Phone,
                 UserName = user.UserName
+            };
+        }
+
+        public static User ToEntity(this UserViewModel userViewModel)
+        {
+            return new User
+            {
+                Id = userViewModel.Id,
+                UserName = userViewModel.UserName,
+                Address = userViewModel.Address,
+                Email = userViewModel.Email,
+                Name = userViewModel.Name,
+                Phone = userViewModel.Phone,
+                Password = string.Empty
             };
         }
     }

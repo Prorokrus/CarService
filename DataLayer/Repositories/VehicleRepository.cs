@@ -75,7 +75,7 @@ namespace DataLayer.Repositories
             _appDbContext.Entry(vehicleOld).State = EntityState.Modified;
             await _appDbContext.SaveChangesAsync();
 
-            return vehicle;
+            return vehicleOld;
         }
 
         public async Task Delete(Vehicle vehicle)

@@ -9,34 +9,39 @@ namespace BusinessLayer.Helpers
 {
     public class UserHelper
     {
-        private readonly IGenericRepository<User> _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserHelper(IGenericRepository<User> userRepository)
+        public UserHelper(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         public async Task<List<UserViewModel>> GetAll()
         {
-            var users = await _userRepository.GetAll(x => true);
+            var users = await _userRepository.GetAll();
             return users.ToViewModel();
         }
 
         public async Task<User> GetByUserName(string username)
         {
-            return await _userRepository.Get(x => x.UserName == username);
+            return await _userRepository.GetByUserName(username);
         }
 
         public async Task<UserViewModel> GetByUserName(string username, bool returnModel)
         {
-            var user = await _userRepository.Get(x => x.UserName == username);
+            var user = await _userRepository.GetByUserName(username);
             return user.ToViewModel();
         }
 
         public async Task<int> GetUserIdByUserName(string username)
         {
-            var user = await _userRepository.Get(x => x.UserName == username);
-            return user.Id;
+            return await _userRepository.GetUserIdByUserName(username);
+        }
+
+        public async Task<UserViewModel> Update(UserViewModel model)
+        {
+            var user = await _userRepository.Update(model.ToEntity());
+            return user.ToViewModel();
         }
     }
 }

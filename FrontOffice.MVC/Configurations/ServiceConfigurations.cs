@@ -29,6 +29,7 @@ namespace FrontOffice.MVC.Configurations
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IVehicleRepository), typeof(VehicleRepository));
             services.AddScoped(typeof(IUserRoleRepository), typeof(UserRoleRepository));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
             #endregion
 

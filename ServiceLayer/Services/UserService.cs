@@ -79,5 +79,18 @@ namespace ServiceLayer.Services
 
             return new UserViewModel();
         }
+
+        public async Task Update(UserViewModel model)
+        {
+            _logger.LogInformation($"Update users with Id: {model.Id}");
+            try
+            {
+                await _userHelper.Update(model);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+        }
     }
 }
