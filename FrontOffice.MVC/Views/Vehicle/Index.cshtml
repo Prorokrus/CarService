@@ -1,0 +1,67 @@
+﻿@using CommonLayer.ViewModels
+@model List<CommonLayer.ViewModels.VehicleViewModel>
+
+@{
+    ViewData["Title"] = "User vehicles";
+}
+
+<div class="container">
+    <h2>User vehicles</h2>
+    <div class="row mb-2">
+        <div class="col-sm-4 text-center">
+            <a class="btn btn-primary btn-block" href="@Url.Action("Add")">Add new Vehicle</a>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>@nameof(VehicleViewModel.Brand)</th>
+            <th>@nameof(VehicleViewModel.Color)</th>
+            <th>@nameof(VehicleViewModel.Motor)</th>
+            <th>@nameof(VehicleViewModel.Fuel)</th>
+            <th>@nameof(VehicleViewModel.VinCode)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model == null || Model.Count < 1)
+        {
+            <tr>
+                <td colspan="3">No data</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var vehicle in Model)
+            {
+                <tr>
+                    <td>@vehicle.Brand</td>
+                    <td>@vehicle.Color</td>
+                    <td>@vehicle.Motor</td>
+                    <td>@vehicle.Fuel</td>
+                    <td>@vehicle.VinCode</td>
+                    <td><a class="btn btn-warning btn-block" href="@Url.Action("Edit")?vehicleId=@vehicle.Id"><i class="bi bi-file-earmark-binary-fill"></i></a></td>
+                    <td><a class="btn btn-danger btn-block" href="@Url.Action("Delete")?vehicleId=@vehicle.Id"><i class="bi bi-trash-fill"></i></a></td>
+
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const menuItems = document.getElementById('header-menu').children;
+            for (const item in menuItems) {
+                console.log(menuItems[item]);
+                if (menuItems[item].children != undefined)
+                    menuItems[item].classList.remove('active');
+            }
+            document.getElementById('nav-item-vehicle').classList.add('active');
+        });
+    </script>
+}

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Mapper;
 using CommonLayer.ViewModels;
@@ -32,6 +31,12 @@ namespace BusinessLayer.Helpers
         {
             var user = await _userRepository.Get(x => x.UserName == username);
             return user.ToViewModel();
+        }
+
+        public async Task<int> GetUserIdByUserName(string username)
+        {
+            var user = await _userRepository.Get(x => x.UserName == username);
+            return user.Id;
         }
     }
 }

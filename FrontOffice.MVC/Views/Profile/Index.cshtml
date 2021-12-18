@@ -6,28 +6,52 @@
 
 <div class="container">
     <div class="row">
-        
-        <ul class="list-group">
-            <li class="list-group-item">
-                <label class="profile-item">Name: </label>
-                @Html.DisplayFor(x => x.Name)
-            </li>
-            <li class="list-group-item">
-                <label class="profile-item">UserName: </label>
-                @Html.DisplayFor(x => x.UserName)
-            </li>
-            <li class="list-group-item">
-                <label class="profile-item">Email: </label>
-                @Html.DisplayFor(x => x.Email)
-            </li>
-            <li class="list-group-item">
-                <label class="profile-item">Address: </label>
-                @Html.DisplayFor(x => x.Address)
-            </li>
-            <li class="list-group-item">
-                <label class="profile-item">Phone: </label>
-                @Html.DisplayFor(x => x.Phone)
-            </li>
-        </ul>
+        @using (Html.BeginForm("Update", "Profile", FormMethod.Post, new {@class = "form-horizontal", id = "UpdateProfileForm"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x=>x.Id)
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label class="profile-item">Name: </label>
+                    @Html.EditorFor(x => x.Name)
+                </li>
+                <li class="list-group-item">
+                    <label class="profile-item">UserName: </label>
+                    @Html.EditorFor(x => x.UserName)
+                </li>
+                <li class="list-group-item">
+                    <label class="profile-item">Email: </label>
+                    @Html.EditorFor(x => x.Email)
+                </li>
+                <li class="list-group-item">
+                    <label class="profile-item">Address: </label>
+                    @Html.EditorFor(x => x.Address)
+                </li>
+                <li class="list-group-item">
+                    <label class="profile-item">Phone: </label>
+                    @Html.EditorFor(x => x.Phone)
+                </li>
+            </ul>
+
+            <div class="row" style="margin-top: 20px">
+                <button type="submit" class="btn btn-primary" style="margin:0 13px">Save</button>
+                @Html.ActionLink("Cancel", "Index", "Home", null, new {@class="btn btn-secondary"})
+            </div>
+        }
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const menuItems = document.getElementById('header-menu').children;
+            for (const item in menuItems) {
+                console.log(menuItems[item]);
+                if (menuItems[item].children != undefined)
+                    menuItems[item].classList.remove('active');
+            }
+            document.getElementById('nav-item-profile').classList.add('active');
+        });
+    </script>
+}

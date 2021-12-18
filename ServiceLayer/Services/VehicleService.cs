@@ -22,7 +22,7 @@ namespace ServiceLayer.Services
 
         public async Task<List<VehicleViewModel>> GetAllVehicles()
         {
-            _logger.LogInformation("Getting all users");
+            _logger.LogInformation("Getting all Vehicles");
             try
             {
                 return await _vehicleHelper.GetAll();
@@ -36,7 +36,7 @@ namespace ServiceLayer.Services
 
         public async Task<List<Vehicle>> GetAllVehicles(User user)
         {
-            _logger.LogInformation("Getting all users");
+            _logger.LogInformation("Getting all Vehicles");
             try
             {
                 return await _vehicleHelper.GetAll(user);
@@ -46,6 +46,80 @@ namespace ServiceLayer.Services
                 _logger.LogError(exception, exception.Message);
             }
             return new List<Vehicle>();
+        }
+
+        public async Task<List<VehicleViewModel>> GetAllVehicles(int userId)
+        {
+            _logger.LogInformation("Getting all Vehicles");
+
+            try
+            {
+                return await _vehicleHelper.GetAll(userId);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+
+            return new List<VehicleViewModel>();
+        }
+
+        public async Task AddVehicle(VehicleViewModel model, int userId)
+        {
+            _logger.LogInformation("Adding new Vehicle");
+
+            try
+            {
+                await _vehicleHelper.Create(model, userId);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+        }
+
+        public async Task<VehicleViewModel> GetVehicle(int vehicleId)
+        {
+            _logger.LogInformation($"Get vehicle with Id: {vehicleId}");
+
+            try
+            {
+                return await _vehicleHelper.Get(vehicleId);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+
+            return new VehicleViewModel();
+        }
+
+        public async Task EditVehicle(VehicleViewModel model)
+        {
+            _logger.LogInformation($"Update vehicle with Id: {model.Id}");
+
+            try
+            {
+                await _vehicleHelper.Update(model);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+        }
+
+        public async Task DeleteVehicle(int vehicleId)
+        {
+            _logger.LogInformation($"Delete vehicle with Id: {vehicleId}");
+
+            try
+            {
+                await _vehicleHelper.Delete(vehicleId);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
         }
     }
 }

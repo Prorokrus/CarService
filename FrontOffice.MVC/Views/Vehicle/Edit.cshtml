@@ -1,0 +1,54 @@
+﻿@model CommonLayer.ViewModels.VehicleViewModel
+
+@{
+    ViewData["Title"] = "Edit vehicle";
+}
+
+<div class="container">
+    <div class="col-sm-6">
+        @using (Html.BeginForm("Edit", "Vehicle", FormMethod.Post, new { @class = "form-horizontal", id = "EditVehicleForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.User)
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="form-item">
+                        <label>Vehicle Brand: </label>
+                        @Html.EditorFor(x => x.Brand)
+                    </div>
+
+                    <div class="form-item">
+                        <label>Vehicle Color: </label>
+                        @Html.EditorFor(x => x.Color)
+                    </div>
+              
+                    <div class="form-item">
+                        <label>Vehicle Motor: </label>
+                        @Html.EditorFor(x => x.Motor)
+                    </div>
+                
+                    <div class="form-item">
+                        <label>Vehicle Fuel: </label>
+                        @Html.EditorFor(x => x.Fuel)
+                    </div>
+                
+                    <div class="form-item">
+                        <label>Vehicle VinCode: </label>
+                        @Html.EditorFor(x => x.VinCode)
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                @Html.ActionLink("Cancel", "Index", "Vehicle", null, new {@class="btn btn-secondary"})
+            </div>
+        }
+    </div>
+</div>
+
+<style type="text/css">
+    .form-item label {
+        font-weight: bold;
+    }
+</style>

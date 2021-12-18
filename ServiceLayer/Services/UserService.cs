@@ -50,6 +50,21 @@ namespace ServiceLayer.Services
             return new User();
         }
 
+        public async Task<int> GetUserIdByUserName(string username)
+        {
+            _logger.LogInformation($"Getting userId with username: {username}");
+            try
+            {
+                return await _userHelper.GetUserIdByUserName(username);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, exception.Message);
+            }
+
+            return 0;
+        }
+
         public async Task<UserViewModel> GetByUserName(string username, bool returnModel)
         {
             _logger.LogInformation("Getting all users");

@@ -18,7 +18,8 @@ namespace FrontOffice.MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var userName = HttpContext.User?.Identity?.Name;
+            return View("Index", userName);
         }
 
         public IActionResult Privacy()

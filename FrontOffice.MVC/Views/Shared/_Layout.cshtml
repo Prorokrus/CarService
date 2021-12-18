@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FrontOffice.MVC</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Car Service</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,10 +25,13 @@
                         <li class="nav-item" id="nav-item-users">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
                         </li>
-                        <li class="nav-item" id="nav-item-users">
+                        <li class="nav-item" id="nav-item-profile">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">Profile</a>
                         </li>
-                        <li class="nav-item" id="nav-item-logout">
+                        <li class="nav-item" id="nav-item-vehicle">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicle" asp-action="Index">Vehicle</a>
+                        </li>
+                        <li class="nav-item float-right" id="nav-item-logout">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
                         </li>
                     </ul>
@@ -44,7 +47,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - FrontOffice.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Car Service - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
